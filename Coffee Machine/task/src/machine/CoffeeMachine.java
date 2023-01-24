@@ -74,34 +74,6 @@ public class CoffeeMachine {
         }
     }
 
-    private static void makeTransaction(int price, int... qty) {
-        System.out.println("I have enough resources, making you a coffee!");
-        money += price;
-        disposableCups--;
-        water -= qty[0];
-        milk -= qty[1];
-        coffeeBeans -= qty[2];
-    }
-
-    private static boolean checkResources(int... qty) {
-        return disposableCups > 0 && water >= qty[0] && milk >= qty[1] && coffeeBeans >= qty[2];
-    }
-
-    private static void showInsufficientResources(int... qty) {
-        String sb =
-                (disposableCups == 0 ? "disposable cups, " : "") +
-                (water < qty[0] ? "water, " : "") +
-                (milk < qty[1] ? "milk, " : "") +
-                (coffeeBeans < qty[2] ? "coffee beans, " : "");
-
-        String insufficientResources = sb
-                .trim()
-                .replaceAll(",$", "")
-                .replaceAll(",$", " or ");
-
-        System.out.printf("Sorry, not enough %s!%n", insufficientResources);
-    }
-
     private static void showInsufficientResources(Coffee coffee) {
         String sb = (disposableCups == 0 ? "disposable cups, " : "") +
                 (water < coffee.getRequiredWater() ? "water, " : "") +
